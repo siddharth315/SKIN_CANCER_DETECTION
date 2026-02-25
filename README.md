@@ -56,14 +56,24 @@ This project uses **MobileNetV2** as a pretrained base model. MobileNetV2 is a l
 - Good performance on image classification tasks
 - Suitable for transfer learning
 
-### Training Strategy
+### Algorithm and Training Process
 
-1. Load pretrained MobileNetV2 (without top layer)
-2. Freeze base layers
-3. Add custom Dense layers
-4. Train classifier layers
-5. Unfreeze top layers for fine-tuning
-6. Retrain with lower learning rate
+1. Import necessary libraries 
+2. Load the dataset
+3. Preprocess the images:
+   - Resize to 224×224 pixels
+   - Rescale pixel values to [0,1]
+   - Apply data augmentation (rotation, flipping, zooming) 
+4. Split dataset into Training (80%) and Validation (20%) sets
+5. Load MobileNetV2 as the base model
+6. Freeze base model layers to retain learned features
+7. Add custom layers:
+   - Global Average Pooling
+   - Dropout (0.4)
+   - Dense layer (1 neuron, sigmoid activation) 
+8. Compile the model using Adam optimizer and Binary Cross-Entropy loss
+9. Train the model for 15 epochs + 5 fine-tuning epochs
+10. Evaluate the model on the test data and generate performance metrics (accuracy, confusion matrix, classification report)
 
 ---
 
@@ -85,6 +95,10 @@ This project uses **MobileNetV2** as a pretrained base model. MobileNetV2 is a l
 - Training Strategy: Transfer Learning + Fine-Tuning
 - Final Model File: `skin_cancer_cnn_model.h5`
 - Test Accuracy: 78.03%
+- Training Accuracy: Improved steadily across epochs.
+- Validation Accuracy: Showed minimal overfitting.
+- Loss: Decreased smoothly with epochs.
+- Confusion Matrix: Showed strong diagonal dominance, indicating correct predictions.
 
 ---
 
