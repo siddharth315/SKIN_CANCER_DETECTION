@@ -166,6 +166,11 @@ model = load_model("skin_cancer_model.h5")
 
 ---
 
+## Research Documentation
+
+The detailed research paper explaining methodology, training strategy, and evaluation results is available in: ```research_paper/Skin_Cancer_Detection_Research_Paper.pdf```
+
+---
 ## Future Improvements
 - Convert into Flask web application
 - Deploy using Streamlit
